@@ -1,10 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
   <defs>
-    <linearGradient id="nsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#111827"/>
-      <stop offset="100%" stop-color="#374151"/>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="hsl(17,62%,52%)"/>
+      <stop offset="100%" stop-color="hsl(17,62%,42%)"/>
     </linearGradient>
   </defs>
-  <rect width="128" height="128" rx="28" fill="url(#nsGrad)"/>
-  <text x="64" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="56" fill="#f9fafb">N</text>
+  <!-- Fond arrondi terre cuite -->
+  <rect width="128" height="128" rx="28" fill="url(#bgGrad)"/>
+  <!-- Maison stylisée -->
+  <!-- Toit -->
+  <polygon points="20,62 64,22 108,62" fill="hsl(42,65%,82%)" opacity="0.95"/>
+  <!-- Corps -->
+  <rect x="34" y="62" width="60" height="44" rx="3" fill="#fff" opacity="0.95"/>
+  <!-- Porte -->
+  <rect x="54" y="78" width="20" height="28" rx="4" fill="hsl(17,62%,52%)"/>
+  <!-- Fenêtre gauche -->
+  <rect x="38" y="70" width="12" height="10" rx="2" fill="hsl(42,65%,62%)" opacity="0.9"/>
+  <!-- Fenêtre droite -->
+  <rect x="78" y="70" width="12" height="10" rx="2" fill="hsl(42,65%,62%)" opacity="0.9"/>
+  <!-- Cheminée -->
+  <rect x="80" y="32" width="10" height="22" rx="2" fill="hsl(135,18%,48%)" opacity="0.9"/>
 </svg>

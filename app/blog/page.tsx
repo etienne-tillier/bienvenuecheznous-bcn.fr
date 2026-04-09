@@ -1,43 +1,98 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getPublishedBlogPosts } from "@/lib/blog";
+import { BlogCard } from "@/components/BlogCard";
+
+export const revalidate = 21600;
+
+export const metadata: Metadata = {
+  title: "Blog — Hébergement participatif, conseils et guides",
+  description:
+    "Retrouvez tous nos articles sur l'hébergement chez l'habitant : conseils pratiques, guides voyageurs, astuces hôtes, comparatifs plateformes et témoignages.",
+  alternates: { canonical: "https://bienvenuecheznous-bcn.fr/blog" },
+};
 
 export default async function BlogPage() {
   const posts = await getPublishedBlogPosts(24, 0);
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-12">
-      <header className="mb-8">
-        <p className="text-sm text-slate-500">Blog</p>
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
-          Tous les articles
-        </h1>
-      </header>
-
-      {posts.length === 0 ? (
-        <div className="rounded-lg border border-slate-200 bg-white p-6 text-slate-600">
-          Aucun article publié.
+    <>
+      {/* Hero */}
+      <section
+        style={{
+          background: "hsl(25,20%,16%)",
+          padding: "4rem 0 3rem",
+          borderBottom: "1px solid hsl(25,15%,22%)",
+        }}
+      >
+        <div className="container">
+          <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", fontSize: "0.85rem", color: "hsl(38,20%,55%)", textDecoration: "none", marginBottom: "1.5rem", transition: "color 0.2s" }}>
+            ← Accueil
+          </Link>
+          <h1
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(2rem, 5vw, 3rem)",
+              fontWeight: 600,
+              color: "#fff",
+              lineHeight: 1.15,
+              marginBottom: "0.75rem",
+            }}
+          >
+            Nos articles &amp; guides
+          </h1>
+          <p style={{ fontSize: "1.05rem", color: "hsl(38,20%,60%)", maxWidth: "54ch", lineHeight: 1.7 }}>
+            Conseils pratiques, témoignages authentiques et guides complets pour voyageurs et hôtes.
+          </p>
         </div>
-      ) : (
-        <ul className="space-y-4">
-          {posts.map((post) => (
-            <li key={post.id} className="rounded-lg border border-slate-200 bg-white p-5">
-              <h2 className="text-lg font-semibold text-slate-900">
-                <Link href={`/blog/${post.slug}`} className="hover:underline">
-                  {post.h1 || post.seo_title || post.slug}
-                </Link>
-              </h2>
-              {post.meta_description ? (
-                <p className="mt-2 text-slate-600">{post.meta_description}</p>
-              ) : null}
-              <p className="mt-3 text-xs text-slate-500">
-                {post.published_at
-                  ? new Date(post.published_at).toLocaleDateString("fr-FR")
-                  : "Date inconnue"}
+      </section>
+
+      {/* Liste articles */}
+      <section className="section texture-warm">
+        <div className="container">
+          {posts.length === 0 ? (
+            <div
+              style={{
+                background: "var(--color-surface)",
+                border: "1px solid var(--color-border)",
+                borderRadius: "var(--radius-lg)",
+                padding: "4rem 2rem",
+                textAlign: "center",
+              }}
+            >
+              <span style={{ fontSize: "2.5rem", display: "block", marginBottom: "1rem" }}>📭</span>
+              <p
+                style={{
+                  fontFamily: "var(--font-serif)",
+                  fontSize: "1.25rem",
+                  color: "var(--color-text)",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                Aucun article publié pour le moment.
               </p>
-            </li>
-          ))}
-        </ul>
-      )}
-    </main>
+              <p style={{ fontSize: "0.9rem", color: "var(--color-text-muted)", marginBottom: "1.5rem" }}>
+                Notre équipe rédige actuellement des guides sur l&apos;hébergement participatif.
+              </p>
+              <Link href="/" className="btn-primary" style={{ fontSize: "0.875rem" }}>
+                Retour à l&apos;accueil
+              </Link>
+            </div>
+          ) : (
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+                gap: "1.5rem",
+              }}
+            >
+              {posts.map((post, i) => (
+                <BlogCard key={post.id} post={post} priority={i < 3} />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    </>
   );
 }

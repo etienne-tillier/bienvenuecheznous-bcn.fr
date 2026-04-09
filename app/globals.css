@@ -2,4 +2,306 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Design system — L'agent IA ajoute ses CSS variables ici */
+/* ============================================================
+   DESIGN SYSTEM — Bienvenue Chez Nous
+   Univers visuel : chaleureux · authentique · organique
+   Palette : terre cuite · beige crème · vert sauge · bois naturel
+   Typographie : Fraunces (titres) + Nunito Sans (corps)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Nunito+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
+
+:root {
+  /* ── Couleurs primaires ── */
+  --color-primary:        hsl(17, 62%, 52%);    /* Terre cuite chaude */
+  --color-primary-dark:   hsl(17, 62%, 42%);    /* Terre cuite foncée (hover) */
+  --color-primary-light:  hsl(17, 62%, 92%);    /* Terre cuite très claire */
+
+  /* ── Couleur secondaire ── */
+  --color-secondary:      hsl(135, 18%, 48%);   /* Vert sauge */
+  --color-secondary-dark: hsl(135, 18%, 38%);
+  --color-secondary-light:hsl(135, 18%, 94%);
+
+  /* ── Accent ── */
+  --color-accent:         hsl(42, 65%, 62%);    /* Beige doré lumineux */
+  --color-accent-light:   hsl(42, 65%, 94%);
+
+  /* ── Fond et surface ── */
+  --color-bg:             hsl(40, 40%, 97%);    /* Crème très clair */
+  --color-surface:        hsl(38, 35%, 99%);    /* Blanc cassé */
+  --color-surface-alt:    hsl(38, 30%, 95%);    /* Surface légèrement teintée */
+
+  /* ── Texte ── */
+  --color-text:           hsl(25, 20%, 20%);    /* Brun foncé chaud */
+  --color-text-muted:     hsl(25, 15%, 50%);    /* Texte atténué */
+  --color-text-light:     hsl(25, 10%, 70%);    /* Texte léger */
+
+  /* ── Bordures ── */
+  --color-border:         hsl(38, 25%, 87%);
+  --color-border-strong:  hsl(38, 25%, 75%);
+
+  /* ── Typographie ── */
+  --font-serif:   'Fraunces', Georgia, serif;
+  --font-sans:    'Nunito Sans', 'Segoe UI', sans-serif;
+
+  /* ── Espacements ── */
+  --container-max: 1200px;
+  --section-gap: 5rem;
+
+  /* ── Ombres ── */
+  --shadow-sm:  0 1px 3px hsla(25, 20%, 20%, 0.08);
+  --shadow-md:  0 4px 16px hsla(25, 20%, 20%, 0.10);
+  --shadow-lg:  0 12px 40px hsla(25, 20%, 20%, 0.14);
+
+  /* ── Radius ── */
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-xl:  32px;
+}
+
+/* ── Reset & base ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ── Utilitaires conteneur ── */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+/* ── Boutons ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-primary);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-primary);
+  cursor: pointer;
+  transition: background 0.22s ease, border-color 0.22s ease, transform 0.15s ease, box-shadow 0.22s ease;
+}
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--color-primary);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-primary);
+  cursor: pointer;
+  transition: background 0.22s ease, color 0.22s ease, transform 0.15s ease;
+}
+.btn-secondary:hover {
+  background: var(--color-primary);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-border);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+.btn-ghost:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+/* ── Card ── */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Badges ── */
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.badge-primary { background: var(--color-primary-light); color: var(--color-primary-dark); }
+.badge-secondary { background: var(--color-secondary-light); color: var(--color-secondary-dark); }
+.badge-accent { background: var(--color-accent-light); color: hsl(42, 65%, 38%); }
+
+/* ── Section ── */
+.section { padding-block: var(--section-gap); }
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  max-width: 56ch;
+  line-height: 1.7;
+}
+
+/* ── Prose ── */
+.prose {
+  color: var(--color-text);
+  max-width: 72ch;
+  line-height: 1.8;
+}
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  font-family: var(--font-serif);
+  color: var(--color-text);
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+}
+.prose h2 { font-size: 1.5rem; }
+.prose h3 { font-size: 1.2rem; }
+.prose p { margin-bottom: 1.2em; }
+.prose a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-color: hsla(17, 62%, 52%, 0.35);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
+}
+.prose a:hover { text-decoration-color: var(--color-primary); }
+.prose ul, .prose ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+.prose li { margin-bottom: 0.4em; }
+.prose blockquote {
+  border-left: 4px solid var(--color-accent);
+  padding-left: 1.2em;
+  margin-left: 0;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+.prose strong { color: var(--color-text); font-weight: 700; }
+.prose code {
+  background: var(--color-surface-alt);
+  padding: 0.1em 0.4em;
+  border-radius: var(--radius-sm);
+  font-size: 0.875em;
+}
+.prose img {
+  border-radius: var(--radius-md);
+  margin-block: 1.5em;
+}
+
+/* ── Animations ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in-up { animation: fadeInUp 0.55s ease both; }
+.animate-fade-in    { animation: fadeIn 0.45s ease both; }
+.animate-scale-in   { animation: scaleIn 0.5s ease both; }
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+
+/* ── Texture de fond subtile ── */
+.texture-warm {
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(circle at 20% 80%, hsla(17, 62%, 52%, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, hsla(135, 18%, 48%, 0.05) 0%, transparent 50%);
+}
+
+/* ── Separateur décoratif ── */
+.divider-leaf {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+  border-radius: 99px;
+  margin-block: 1.25rem;
+}
+
+/* ── Overrides Tailwind Prose ── */
+.prose-custom {
+  --tw-prose-body: var(--color-text);
+  --tw-prose-headings: var(--color-text);
+  --tw-prose-links: var(--color-primary);
+  --tw-prose-bold: var(--color-text);
+  --tw-prose-code: var(--color-text);
+  --tw-prose-quotes: var(--color-text-muted);
+  --tw-prose-quote-borders: var(--color-accent);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-surface-alt); }
+::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-light); }

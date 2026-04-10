@@ -166,9 +166,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <Image
                     src={post.author.avatar_url}
                     alt={post.author.name || "Auteur"}
-                    width={24}
-                    height={24}
+                    width={112}
+                    height={112}
                     style={{ borderRadius: "50%", objectFit: "cover" }}
+                  quality={95}
                   />
                 )}
                 {post.author.name && (
@@ -238,9 +239,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <Image
                   src={post.author.avatar_url}
                   alt={post.author.name || "Auteur"}
-                  width={64}
-                  height={64}
+                  width={112}
+                  height={112}
                   style={{ borderRadius: "50%", objectFit: "cover", flexShrink: 0 }}
+                quality={95}
                 />
               )}
               <div>

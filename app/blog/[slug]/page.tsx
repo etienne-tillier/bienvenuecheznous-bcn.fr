@@ -45,7 +45,7 @@ const buildAlternatesByLocale = (post: {
         typeof translation.status === "string"
           ? translation.status
           : "published";
-      if (!translatedSlug || status !== "published") continue;
+      if (!translatedSlug || translatedSlug === post.slug || status !== "published") continue;
       languages[locale] = buildArticleUrl(translatedSlug);
     }
   }
